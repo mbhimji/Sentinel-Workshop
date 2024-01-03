@@ -41,7 +41,6 @@ Microsoft Sentinel All-in-One automates the following tasks:
 - Some data connectors require the relevant licence in order to be enabled. See table at the end of this page for details.
 
 ## Try it now!
-## Update the deployement location with Difenda URL
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2Fmaster%2FTools%2FSentinel-All-In-One%2Fv2%2Fazuredeploy.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2Fmaster%2FTools%2FSentinel-All-In-One%2Fv2%2FcreateUiDefinition.json) 
  
 
@@ -54,11 +53,7 @@ The following table summarizes permissions, licenses and permissions needed and 
 | Azure Active Directory (Tenant scope version only) | Any AAD license | Global Admin or Security Admin  | Billed    |
 | Azure Active Directory Identity Protection  | AAD Premium 2   | Global Admin or Security Admin  | Free      |
 | Azure Activity                                 | None            | Subscription Reader             | Free      |
-| Dynamics 365                                   | D365 license    | Global Admin or Security Admin  | Billed    |
-| Microsoft 365 Defender                         | M365D license   | Global Admin or Security Admin  | Free      |
+| Microsoft Defender XDR                         | M365D license   | Global Admin or Security Admin  | Free      |
 | Microsoft Defender for Cloud                   | MDC license     | Security Reader                 | Free      |
-| Microsoft Insider Risk Management              | IRM license     | Global Admin or Security Admin  | Free      |
-| Microsoft PowerBi                              | PowerBi license | Global Admin or Security Admin  | Billed    |
-| Microsoft Project                              | MS Project license | Global Admin or Security Admin | Billed  |
 | Office 365                                     | None            | Global Admin or Security Admin  | Free      |
 | Threat Intelligence Platforms                  | None            | Global Admin or Security Admin  | Billed    |
