@@ -148,7 +148,7 @@
             "metadata": {
                 "description": "The location of resources"
             },
-            "defaultValue": "https://github.com/mbhimji/Sentinel-Workshop/"
+            "defaultValue": "https://raw.githubusercontent.com/mbhimji/Sentinel-Workshop/"
         },
         "OfferName": {
             "type": "string",
