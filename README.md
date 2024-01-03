@@ -1,17 +1,8 @@
 # Sentinel-Workshop
 
-# Microsoft Sentinel All In One
+## What does deployement do?
 
-<p align="center">
-<img src="./v2/Media/Sentinel All-in-One logo.jpg?raw=true">
-</p>
-
-Microsoft Sentinel All-in-One is aimed at helping customers and partners quickly set up a full-fledged Microsoft Sentinel environment that is ready to use, speeding up deployment and initial configuration tasks in few clicks, saving time and simplifying Microsoft Sentinel setup.
-
-## What does All-in-One do?
-## Update the description of what will be deployed
-
-Microsoft Sentinel All-in-One automates the following tasks:
+Microsoft Sentinel workshop the following tasks:
 
 - Creates resource group
 - Creates Log Analytics workspace
@@ -41,7 +32,7 @@ Microsoft Sentinel All-in-One automates the following tasks:
 - Some data connectors require the relevant licence in order to be enabled. See table at the end of this page for details.
 
 ## Try it now!
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2Fmaster%2FTools%2FSentinel-All-In-One%2Fv2%2Fazuredeploy.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2Fmaster%2FTools%2FSentinel-All-In-One%2Fv2%2FcreateUiDefinition.json) 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmbhimji%2FSentinel-Workshop%2Fmain%2Fazuredeploy.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fmbhimji%2FSentinel-Workshop%2Fmain%2FcreateUiDefinition.json) 
  
 
 ## Supported connectors
