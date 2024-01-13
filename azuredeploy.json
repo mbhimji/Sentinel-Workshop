@@ -91,13 +91,6 @@
             },
             "defaultValue": []
         },
-        "enableSolutionsEssentials": {
-            "type": "array",
-            "metadata": {
-                "description": "The list of Content Hub Essentials solutions to deploy."
-            },
-            "defaultValue": []
-        },
         "enableSolutionsTraining": {
             "type": "array",
             "metadata": {
@@ -269,7 +262,7 @@
             }
         },
         {
-            "condition": "[or(not(empty(parameters('enableSolutions1P'))),not(empty(parameters('enableSolutionsEssentials'))),not(empty(parameters('enableSolutionsTraining'))))]",
+            "condition": "[or(not(empty(parameters('enableSolutions1P'))),not(empty(parameters('enableSolutionsTraining'))))]",
             "name": "enableSolutionsAndAlerts",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
@@ -287,9 +280,6 @@
                 "parameters": {
                     "enableSolutions1P": {
                         "value": "[replace(replace(string(parameters('enableSolutions1P')),'[',''),']','')]"
-                    },
-                    "enableSolutionsEssentials": {
-                        "value": "[replace(replace(string(parameters('enableSolutionsEssentials')),'[',''),']','')]"
                     },
                     "enableSolutionsTraining": {
                         "value": "[replace(replace(string(parameters('enableSolutionsTraining')),'[',''),']','')]"

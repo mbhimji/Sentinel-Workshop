@@ -68,8 +68,8 @@
             "dependsOn": [],
             "properties": {
                 "alertRuleTemplateName": "532c1811-79ee-4d9f-8d4d-6304c840daa1",
-                "description": "Create incidents based on Azure Active Directory Identity Protection alerts",
-                "displayName": "Create incidents based on all alerts generated in Azure Active Directory Identity Protection",
+                "description": "Create incidents based on Entra Identity Protection alerts",
+                "displayName": "Create incidents based on all alerts generated in Entra Identity Protection",
                 "enabled": true,
                 "productFilter": "Azure Active Directory Identity Protection"
             }
