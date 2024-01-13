@@ -148,36 +148,10 @@
             "metadata": {
                 "description": "The location of resources"
             },
-            "defaultValue": "https://raw.githubusercontent.com/mbhimji/Sentinel-Workshop/"
-        },
-        "OfferName": {
-            "type": "string",
-            "metadata": {
-                "description": "Specify a unique name for the Managing Tenant offer."
-            }
-        },
-        "OfferDescription": {
-            "type": "string",
-            "metadata": {
-                "description": "Provide a description for this delegation offer."
-            }
-        },
-        "ManagingTenantId": {
-            "type": "string",
-            "metadata": {
-                "description": "Specify Managing Tenant ID."
-            }
-        },
-        "delegations": {
-            "type": "array",
-            "metadata": {
-                "description": "Specify permissions array."
-            }
+            "defaultValue": "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Tools/Sentinel-All-In-One/"
         }
     },
     "variables": {
-        "mspRegistrationName": "[guid(parameters('OfferName'))]",
-        "mspAssignmentName": "[guid(parameters('OfferName'))]"
     },
     "resources": [
         {
@@ -198,7 +172,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[uri(parameters('_artifactsLocation'), 'LinkedTemplates/workspace.json')]",
+                    "uri": "[uri(parameters('_artifactsLocation'), 'v2/LinkedTemplates/workspace.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -237,7 +211,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[uri(parameters('_artifactsLocation'), 'LinkedTemplates/settings.json')]",
+                    "uri": "[uri(parameters('_artifactsLocation'), 'v2/LinkedTemplates/settings.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -269,7 +243,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[uri(parameters('_artifactsLocation'), 'LinkedTemplates/dataConnectors.json')]",
+                    "uri": "[uri(parameters('_artifactsLocation'), 'v2/LinkedTemplates/dataConnectors.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -307,7 +281,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[uri(parameters('_artifactsLocation'), 'LinkedTemplates/solutionsAndAlerts.json')]",
+                    "uri": "[uri(parameters('_artifactsLocation'), 'v2/LinkedTemplates/solutionsAndAlerts.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -334,44 +308,6 @@
                     }
                 }
             }
-        },
-        {
-            "type": "Microsoft.ManagedServices/registrationDefinitions",
-            "apiVersion": "2019-06-01",
-            "name": "[variables('mspRegistrationName')]",
-            "properties": {
-                "registrationDefinitionName": "[parameters('OfferName')]",
-                "description": "[parameters('OfferDescription')]",
-                "managedByTenantId": "[parameters('ManagingTenantId')]",
-                "authorizations": "[parameters('delegations')]"
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2018-05-01",
-            "name": "resourceGroupAssignment",
-            "resourceGroup": "[parameters('rgName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
-            ],
-            "properties":{
-                "mode":"Incremental",
-                "template":{
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {},
-                    "resources": [
-                        {
-                            "type": "Microsoft.ManagedServices/registrationAssignments",
-                            "apiVersion": "2019-06-01",
-                            "name": "[variables('mspAssignmentName')]",
-                            "properties": {
-                                "registrationDefinitionId": "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
-                            }
-                        }
-                    ]
-                }
-            }
         }
     ],
     "outputs": {
@@ -382,14 +318,6 @@
         "dataConnectorsList": {
             "type": "string",
             "value": "[replace(replace(string(parameters('enableDataConnectors')),'\"',''),'[','')]"
-        },
-        "OfferName": {
-            "type": "string",
-            "value": "[concat('Managed by', ' ', parameters('OfferName'))]"
-        },
-        "authorizations": {
-            "type": "array",
-            "value": "[parameters('delegations')]"
         }
     }
 }
