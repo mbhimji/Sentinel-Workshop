@@ -46,7 +46,6 @@
     "variables": {
         "o365Name": "[concat('o365', uniqueString(resourceGroup().id))]",
         "m365dName": "[concat('m365d', uniqueString(resourceGroup().id))]",
-        "irmName": "[concat('irm', uniqueString(resourceGroup().id))]",
         "ascName": "[concat('asc', uniqueString(resourceGroup().id))]",
         "aadipName": "[concat('aadip', uniqueString(resourceGroup().id))]",
         "tiName": "[concat('ti', uniqueString(resourceGroup().id))]"
