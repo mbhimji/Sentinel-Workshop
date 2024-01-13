@@ -6,7 +6,7 @@
         "config": {
             "isWizard": false,
             "basics": {
-                "description": "**Microsoft Sentinel Workshop.",
+                "description": "**Microsoft Sentinel All-In-One** deployment, see more information about this project [here](https://github.com/Azure/Azure-Sentinel/Tools/Sentinel-All-In-One/).",
                 "location": {
                     "label": "Location",
                     "toolTip": "Location for all resources",
@@ -142,57 +142,6 @@
                     "required": true
                 },
                 "visible": "[if(equals(basics('pricingTier'),'CapacityReservation'), true, false)]"
-            },
-            {
-                "name": "OfferName",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Specify a unique name for the Managing Tenant offer.",
-                "placeholder": "",
-                "defaultValue": "",
-                "toolTip": "The Workspace name should include 4-63 letters, digits or '-'. The '-' shouldn't be the first or the last symbol.",
-                "constraints": {
-                    "required": true,
-                    "regex": "^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$",
-                    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
-                },
-                "visible": true
-            },
-			{
-                "name": "OfferDescription",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Provide a description for this delegation offer.",
-                "placeholder": "",
-                "defaultValue": "",
-                "toolTip": "The Workspace name should include 4-63 letters, digits or '-'. The '-' shouldn't be the first or the last symbol.",
-                "constraints": {
-                    "required": true,
-                    "regex": "^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$",
-                    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
-                },
-                "visible": true
-            },
-			{
-                "name": "ManagingTenantId",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Specify Managing Tenant ID.",
-                "placeholder": "",
-                "defaultValue": "",
-                "toolTip": "The Workspace name should include 4-63 letters, digits or '-'. The '-' shouldn't be the first or the last symbol.",
-                "constraints": {
-                    "required": true,
-                    "regex": "^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$",
-                    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
-                },
-                "visible": true
-            },
-			{
-                "name": "delegations",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Specify permissions array.",
-                "placeholder": "",
-                "defaultValue": "",
-                "toolTip": "The Workspace name should include 4-63 letters, digits or '-'. The '-' shouldn't be the first or the last symbol.",
-                "visible": true
             }
           ],
           "steps": [
@@ -292,6 +241,11 @@
                                   "value": "Azure Activity"
                               },
                               {
+                                  "label": "Dynamics 365 CE",
+                                  "description": "The Microsoft Sentinel solution for Dynamics 365 CE apps provides threat monitoring, detection and incident response capabilities for Dynamics 365 CE apps.",
+                                  "value": "Dynamics 365 CE Apps"
+                              },
+                              {
                                   "label": "Microsoft 365",
                                   "description": "The Microsoft 365 solution for Microsoft Sentinel enables you to ingest operational logs from Microsoft 365 to gain insights into user and admin activity across your collaboration platforms such as Teams, SharePoint and Exchange.",
                                   "value": "Microsoft 365"
@@ -310,6 +264,26 @@
                                   "label": "Microsoft Defender for IoT",
                                   "description": "The Microsoft Defender for IoT solution for Microsoft Sentinel allows you to ingest Security alerts reported in Microsoft Defender for IoT on assessing your Internet of Things (IoT)/Operational Technology (OT) infrastructure.",
                                   "value": "Microsoft Defender for IoT"
+                              },
+                              {
+                                  "label": "Microsoft Insider Risk Management",
+                                  "description": "This solution enables insider risk management teams to investigate risk-based behavior across 25+ Microsoft products. This solution is a better-together story between Microsoft Sentinel and Microsoft Purview Insider Risk Management.",
+                                  "value": "Microsoft Purview Insider Risk Management"
+                              },
+                              {
+                                  "label": "Microsoft PowerBI",
+                                  "description": "The Microsoft PowerBI solution enables you to track user activities in your PowerBI environment.",
+                                  "value": "Microsoft PowerBI"
+                              },
+                              {
+                                  "label": "Microsoft Project",
+                                  "description": "Stream your Microsoft Project audit logs into Microsoft Sentinel in order to track your project activities.",
+                                  "value": "Microsoft Project"
+                              },
+                              {
+                                  "label": "Microsoft Teams",
+                                  "description": "Microsoft Sentinel for Teams provides Teams security logs visibility and threat protection.",
+                                  "value": "Teams"
                               },
                               {
                                   "label": "Threat Intelligence",
@@ -442,12 +416,12 @@
                       "constraints": {
                           "allowedValues": [
                             {
-                                "label": "Entra ID",
+                                "label": "Azure Active Directory",
                                 "description": "Relevant license and Global Admin or Security Admin permission required.",
                                 "value": "AzureActiveDirectory"
                             },  
                             {
-                                "label": "Entra ID Protection",
+                                "label": "Azure Active Directory Identity Protection",
                                 "description": "Relevant license and Global Admin or Security Admin permission required.",
                                 "value": "AzureActiveDirectoryIDP"
                             },
@@ -457,9 +431,34 @@
                                 "value": "AzureActivity"
                             },
                             {
+                                "label": "Dynamics 365",
+                                "description": "Relevant license and Global Admin or Security Admin permission required",
+                                "value": "Dynamics365"
+                            },
+                            {
                                 "label": "Microsoft 365 Defender",
                                 "description": "This will only enable incident and alert synchronization, no advanced hunting data will be enabled. Relevant license and Global Admin or Security Admin permission required",
                                 "value": "Microsoft365Defender"
+                            },
+                            {
+                                "label": "Microsoft Defender for Cloud",
+                                "description": "Security Reader permission required",
+                                "value": "MicrosoftDefenderForCloud"
+                            },
+                            {
+                                "label": "Microsoft Insider Risk Management",
+                                "description": "Relevant license and Global Admin or Security Admin permission required",
+                                "value": "OfficeIRM"
+                            },
+                            {
+                                "label": "Microsoft PowerBI",
+                                "description": "Relevant license and Global Admin or Security Admin permission required",
+                                "value": "OfficePowerBI"
+                            },
+                            {
+                                "label": "Microsoft Project",
+                                "description": "Relevant license and Global Admin or Security Admin permission required",
+                                "value": "Office365Project"
                             },
                             {
                                 "label": "Office 365",
@@ -616,8 +615,6 @@
             "dailyQuota": "[basics('dailyQuota')]",
             "dataRetention": "[basics('dataRetention')]",
             "pricingTier": "[basics('pricingTier')]",
-            "OfferName": "[basics('OfferName')]",
-            "authorizations": "[basics('authorizations')]",
             "capacityReservation": "[basics('capacityReservation')]",
             "enableUeba": "[steps('settings').enableUeba]",
             "identityProviders": "[steps('settings').identityProviders]",
