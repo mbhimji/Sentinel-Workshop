@@ -338,7 +338,7 @@
                                 "value": "AzureActivity"
                             },
                             {
-                                "label": "Microsoft 365 XDR",
+                                "label": "Microsoft Defender XDR",
                                 "description": "This will only enable incident and alert synchronization, no advanced hunting data will be enabled. Relevant license and Global Admin or Security Admin permission required",
                                 "value": "Microsoft365Defender"
                             },
