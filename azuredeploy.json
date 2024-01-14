@@ -84,13 +84,6 @@
             },
             "defaultValue": []
         },
-        "enableSolutionsTraining": {
-            "type": "array",
-            "metadata": {
-                "description": "The list of Content Hub Training solutions to deploy."
-            },
-            "defaultValue": []
-        },
         "aadStreams": {
             "type": "array",
             "metadata": {
