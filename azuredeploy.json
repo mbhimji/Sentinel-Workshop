@@ -55,6 +55,13 @@
             },
             "defaultValue": []
         },
+        "severityLevels": {
+            "type": "array",
+            "metadata": {
+                "description": "Severity levels desired for Analytics Rules"
+            },
+            "defaultValue": []
+        },
         "dailyQuota": {
             "type": "int",
             "metadata": {
@@ -81,6 +88,13 @@
             "type": "array",
             "metadata": {
                 "description": "The list of Content Hub 1st party solutions to deploy."
+            },
+            "defaultValue": []
+        },
+        "enableSolutionsEssentials": {
+            "type": "array",
+            "metadata": {
+                "description": "The list of Content Hub Essentials solutions to deploy."
             },
             "defaultValue": []
         },
@@ -114,6 +128,20 @@
         },
         "enableDiagnostics": {
             "type": "bool"
+        },
+        "enableMLAlerts": {
+            "type": "bool",
+            "metadata": {
+                "description": "Enable ML Behavior Analytics rules"
+            },
+            "defaultValue": false
+        },
+        "enableScheduledAlerts": {
+            "type": "bool",
+            "metadata": {
+                "description": "Enable Scheduled analytics rules"
+            },
+            "defaultValue": false
         },
         "_artifactsLocation": {
             "type": "string",
@@ -240,6 +268,48 @@
                 }
             }
         },
+        {
+            "condition": "[or(not(empty(parameters('enableSolutions1P'))),not(empty(parameters('enableSolutionsEssentials'))),not(empty(parameters('enableSolutionsTraining'))))]",
+            "name": "enableSolutionsAndAlerts",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "resourceGroup": "[parameters('rgName')]",
+            "dependsOn": [
+                "workspaceCreation",
+                "[resourceId('Microsoft.Resources/resourceGroups',parameters('rgName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(parameters('_artifactsLocation'), 'LinkedTemplates/solutionsAndAlerts.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "enableSolutions1P": {
+                        "value": "[replace(replace(string(parameters('enableSolutions1P')),'[',''),']','')]"
+                    },
+                    "enableSolutionsEssentials": {
+                        "value": "[replace(replace(string(parameters('enableSolutionsEssentials')),'[',''),']','')]"
+                    },
+                    "enableSolutionsTraining": {
+                        "value": "[replace(replace(string(parameters('enableSolutionsTraining')),'[',''),']','')]"
+                    },
+                    "workspaceName": {
+                        "value": "[parameters('workspaceName')]"
+                    },
+                    "severityLevels": {
+                        "value": "[replace(replace(string(parameters('severityLevels')),'[',''),']','')]"
+                    },
+                    "enableAlerts": {
+                        "value": "[parameters('enableScheduledAlerts')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
+                }
+            }
+        }
+    ],
     "outputs": {
         "workspaceName": {
             "type": "string",
