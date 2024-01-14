@@ -233,7 +233,7 @@
             }
         },
         {
-            "condition": "[or(not(empty(parameters('enableSolutions1P'))),not(empty(parameters('enableSolutionsTraining'))))]",
+            "condition": "[or(not(empty(parameters('enableSolutions1P'))))]",
             "name": "enableSolutionsAndAlerts",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
@@ -251,9 +251,6 @@
                 "parameters": {
                     "enableSolutions1P": {
                         "value": "[replace(replace(string(parameters('enableSolutions1P')),'[',''),']','')]"
-                    },
-                    "enableSolutionsTraining": {
-                        "value": "[replace(replace(string(parameters('enableSolutionsTraining')),'[',''),']','')]"
                     },
                     "workspaceName": {
                         "value": "[parameters('workspaceName')]"
