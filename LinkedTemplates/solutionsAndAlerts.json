@@ -15,29 +15,12 @@
             },
             "defaultValue": ""
         },
-        "enableSolutionsEssentials": {
-            "type": "string",
-            "metadata": {
-                "description": "Comma separated essentials enabled solutions"
-            },
-            "defaultValue": ""
-        },
         "enableSolutionsTraining": {
             "type": "string",
             "metadata": {
                 "description": "Comma separated training enabled solutions"
             },
             "defaultValue": ""
-        },
-        "enableAlerts": {
-            "type": "bool",
-            "metadata": {
-                "description": "whether to enable scheduled analytic rules or not"
-            },
-            "defaultValue": false
-        },
-        "severityLevels": {
-            "type": "string"
         },
         "location": {
             "type": "string"
@@ -107,7 +90,7 @@
             "properties": {
                 "forceUpdateTag": "1",
                 "azPowerShellVersion": "3.0",
-                "arguments": "[concat('-Workspace ', parameters('workspaceName'), ' -ResourceGroup ', resourceGroup().name, ' -Solutions ', variables('solutions'), ' -SeveritiesToInclude ', string(variables('severities')), ' -Region ', parameters('location'))]",
+                "arguments": "[concat('-Workspace ', parameters('workspaceName'), ' -ResourceGroup ', resourceGroup().name, ' -Solutions ', variables('solutions'), ' -Region ', parameters('location'))]",
                 "primaryScriptUri": "https://raw.githubusercontent.com/javiersoriano/sentinel-all-in-one/master/Sentinel-All-In-One/SubscriptionLevel/Scripts/Create-NewSolutionAndRulesFromList.ps1",
                 "supportingScriptUris": [],
                 "timeout": "PT30M",
