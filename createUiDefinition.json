@@ -296,69 +296,6 @@
                       "visible": true
                   },
                   {
-                    "name": "enableSolutionsEssentials",
-                      "type": "Microsoft.Common.DropDown",
-                      "label": "Select Essentials Content Hub solutions to install",
-                      "placeholder": "",
-                      "multiselect": true,
-                      "filter": true,
-                      "filterPlaceholder": "Filter items ...",
-                      "multiLine": true,
-                      "defaultDescription": "A value for selection",
-                      "toolTip": "Select essentials solutions that you would like to install",
-                      "constraints": {
-                          "allowedValues": [
-                            {
-                                "label": "Attacker Tools Threat Protection Essentials",
-                                "description": "The Attacker Tools Threat Protection Essentials solution contains security content that is relevant for detection of tools commonly used by attackers in various campaigns",
-                                "value": "Attacker Tools Threat Protection Essentials"
-                            },
-                            {
-                                "label": "Cloud Identity Threat Protection Essentials",
-                                "description": "The Cloud Identity Threat Protection Essentials solution looks for most common cloud focused identity attacks such as Suspicious Sign-ins, privilege grants, MFA disable etc.",
-                                "value": "Cloud Identity Threat Protection Essentials"
-                            },
-                            {
-                                "label": "Cloud Service Threat Protection Essentials",
-                                "description": "The Cloud Service Threat Protection Essentials contains security content that is relevant for detection of attacks against various cloud services like key vault, storage, compute etc.",
-                                "value": "Cloud Service Threat Protection Essentials"
-                            },
-                            {
-                                "label": "Endpoint Threat Protection Essentials",
-                                "description": "The Endpoint Threat Protection Essentials solution provides content to monitor, detect and investigate threats related to windows machines.",
-                                "value": "Endpoint Threat Protection Essentials"
-                            },
-                            {
-                                "label": "Network Session Essentials",
-                                "description": "The Network Session Essentials solution leverages the Advanced Security Information Model (ASIM) to correlate insights across 15+ networking data sources and deliver more value for SOC use cases with less content.",
-                                "value": "Network Session Essentials"
-                            }, 
-                            {
-                                "label": "Network Threat Protection Essentials",
-                                "description": "The Network Threat Protection Essentials solution contains queries that identifies suspicious network behavior based on various data sources ingested in Sentinel.",
-                                "value": "Network Threat Protection Essentials"
-                            },
-                            {
-                                "label": "SOC Handbook",
-                                "description": "The SOC Handbook solution for Microsoft Sentinel provides a collection of resources that enable and empower SOC Analysts to get better visibility and understanding of point-in-time security posture of organizational resources.",
-                                "value": "SOC Handbook"
-                            },
-                            {
-                                "label": "SOC Process Framework",
-                                "description": "The SOC Process Framework Solution is built in order to easily integrate with Microsoft Sentinel and build a standard SOC Process and Procedure Framework within your Organization.",
-                                "value": "SOC Process Framework"
-                            },
-                            {
-                                "label": "UEBA Essentials",
-                                "description": "The Sentinel UEBA content package will provide you with various queries based on UEBA tables, that allows you to hunt for tailored threat scenarios.",
-                                "value": "UEBA Essentials"
-                            }
-                          ],
-                          "required": false
-                      },
-                      "visible": true
-                  },
-                  {
                     "name": "enableSolutionsTraining",
                       "type": "Microsoft.Common.DropDown",
                       "label": "Select Training and Tutorials Content Hub solutions to install",
@@ -539,75 +476,6 @@
                       "visible": "[if(contains(steps('dataConnectors').enableDataConnectors,'AzureActiveDirectory'),true,false)]"
                   }
               ]
-          },
-          {
-              "name": "analyticsRules",
-              "label": "Analytics Rules",
-              "elements": [
-                  {
-                      "name": "infoBoxRules",
-                      "type": "Microsoft.Common.InfoBox",
-                      "visible": true,
-                      "options": {
-                          "icon": "Info",
-                          "text": "Please select which analytics rules you would like to enable in your Microsoft Sentinel environment",
-                          "uri": "https://learn.microsoft.com/azure/sentinel/detect-threats-built-in"
-                      }
-                  },
-                  {
-                      "name": "enableMLAlerts",
-                      "type": "Microsoft.Common.CheckBox",
-                      "label": "Enable ML Behavior Analytics alert rules?",
-                      "toolTip": "Select to enable ML Behavior Analytics rules for selected connectors (SecurityEvents and/or Syslog)",
-                      "constraints": {
-                          "required": false,
-                          "validationMessage": "Enables SSH and/or RDP anomalous login alerts"
-                      },
-                      "visible": "[if(or(contains(steps('dataConnectors').enableDataConnectors,'Syslog'),contains(steps('dataConnectors').enableDataConnectors,'SecurityEvents')), true, false)]"
-                  },
-                  {
-                      "name": "enableScheduledAlerts",
-                      "type": "Microsoft.Common.CheckBox",
-                      "label": "Enable Scheduled alert rules for selected Content Hub solutions and Data Connectors?",
-                      "toolTip": "Select to enable Scheduled and NRT analytics rules for the solutions and connectors selected in the previous tabs",
-                      "constraints": {
-                          "required": false,
-                          "validationMessage": "Enables Scheduled and NRT rules matching any of the selected solutions and connectors"
-                      },
-                      "visible": true
-                  },
-                  {
-                      "name": "severityLevels",
-                      "type": "Microsoft.Common.DropDown",
-                      "label": "Select the severity of the rules to enable",
-                      "placeholder": "",
-                      "multiselect": true,
-                      "defaultValue": [{"value": "High"}, {"value": "Medium"}],
-                      "toolTip": "Select the data connectors that you would like to enable",
-                      "constraints": {
-                          "allowedValues": [
-                              {
-                                  "label": "High",
-                                  "value": "High"
-                              },
-                              {
-                                  "label": "Medium",
-                                  "value": "Medium"
-                              },
-                              {
-                                  "label": "Low",
-                                  "value": "Low"
-                              },
-                              {
-                                  "label": "Informational",
-                                  "value": "informational"
-                              }
-                          ],
-                          "required": false
-                      },
-                      "visible": "[if(steps('analyticsRules').enableScheduledAlerts, true, false)]"
-                  }
-              ]
           }
         ],
         "outputs": {
@@ -620,14 +488,10 @@
             "identityProviders": "[steps('settings').identityProviders]",
             "enableDiagnostics": "[steps('settings').enableDiagnostics]",
             "enableSolutions1P": "[steps('solutions').enableSolutions1P]",
-            "enableSolutionsEssentials": "[steps('solutions').enableSolutionsEssentials]",
             "enableSolutionsTraining": "[steps('solutions').enableSolutionsTraining]",
             "enableDataConnectors": "[steps('dataConnectors').enableDataConnectors]",
             "aadStreams": "[steps('dataConnectors').aadStreams]",
             "location": "[location()]",
-            "enableMLAlerts": "[steps('analyticsRules').enableMLAlerts]",
-            "enableScheduledAlerts": "[steps('analyticsRules').enableScheduledAlerts]",
-            "severityLevels": "[steps('analyticsRules').severityLevels]",
             "rgName": "[basics('rgName')]"
         }
     }

@@ -55,13 +55,6 @@
             },
             "defaultValue": []
         },
-        "severityLevels": {
-            "type": "array",
-            "metadata": {
-                "description": "Severity levels desired for Analytics Rules"
-            },
-            "defaultValue": []
-        },
         "dailyQuota": {
             "type": "int",
             "metadata": {
@@ -88,13 +81,6 @@
             "type": "array",
             "metadata": {
                 "description": "The list of Content Hub 1st party solutions to deploy."
-            },
-            "defaultValue": []
-        },
-        "enableSolutionsEssentials": {
-            "type": "array",
-            "metadata": {
-                "description": "The list of Content Hub Essentials solutions to deploy."
             },
             "defaultValue": []
         },
@@ -128,20 +114,6 @@
         },
         "enableDiagnostics": {
             "type": "bool"
-        },
-        "enableMLAlerts": {
-            "type": "bool",
-            "metadata": {
-                "description": "Enable ML Behavior Analytics rules"
-            },
-            "defaultValue": false
-        },
-        "enableScheduledAlerts": {
-            "type": "bool",
-            "metadata": {
-                "description": "Enable Scheduled analytics rules"
-            },
-            "defaultValue": false
         },
         "_artifactsLocation": {
             "type": "string",
@@ -287,9 +259,6 @@
                 "parameters": {
                     "enableSolutions1P": {
                         "value": "[replace(replace(string(parameters('enableSolutions1P')),'[',''),']','')]"
-                    },
-                    "enableSolutionsEssentials": {
-                        "value": "[replace(replace(string(parameters('enableSolutionsEssentials')),'[',''),']','')]"
                     },
                     "enableSolutionsTraining": {
                         "value": "[replace(replace(string(parameters('enableSolutionsTraining')),'[',''),']','')]"
